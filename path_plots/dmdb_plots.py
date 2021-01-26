@@ -1,6 +1,6 @@
 from itertools import chain
 import matplotlib.pyplot as plt
-import plotter as pt
+import path_plots.plotter as pt
 
 
 node_color_map = {'Protein': '#e71761',

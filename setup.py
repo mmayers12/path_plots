@@ -2,6 +2,7 @@ from setuptools import setup, find_packages
 
 install_requires = [
     'pandas',
+    'networkx>=2.5',
     'matplotlib>=3.1.1',
     'seaborn',
 ]
