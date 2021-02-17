@@ -12,7 +12,7 @@ setup(
     author='Mike Mayers',
     author_email='mmayers@scripps.edu',
     url='https://github.com/mmayers12/path_plots',
-    version='0.0.2',
+    version='0.0.3',
     packages=find_packages(),
     license='LICENSE',
     description='Tools for plotting paths within graphs',

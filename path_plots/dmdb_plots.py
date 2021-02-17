@@ -1,5 +1,6 @@
 import networkx as nx
 from itertools import chain
+from collections import Counter
 import matplotlib.pyplot as plt
 import path_plots.plotter as pt
 
@@ -73,12 +74,13 @@ def plot_path(path):
     xscale=10 + ((len(edges) - 2) * 2)
 
     source_id = path['links'][0]['source']
-    target_id = path['links'][-1]['target']
+    visit_count = Counter([l['source'] for l in path['links']]+[l['target'] for l in path['links']])
+    target_ids = [k for k, v in visit_count.items() if v == 1 and k != source_id]
 
-    pred_map = {(l['source'], l['target']): l['key'] for l in path['links']}
+    pred_map = {(l['source'], l['target']): pt.prep_node_labels(l['key'], 15) for l in path['links']}
 
     G = nx.node_link_graph(path)
-    this_paths = list(nx.all_simple_paths(G, source_id, target_id))
+    this_paths = list(chain(*[list(nx.all_simple_paths(G, source_id, target_id)) for target_id in target_ids]))
     preds = [[pred_map[p[i], p[i+1]] for i in range(len(p)-1)] for p in this_paths]
 
     G = pt.build_explanitory_graph(this_paths, preds, node_id_to_color=nid_to_color)

@@ -161,6 +161,11 @@ def prep_node_labels(label, max_line_len, spl_chars=None):
 
     # Add back in the last section of the string
     out += label[start:]
+
+    # Sanitize double line-breaks
+    while '\n\n' in out:
+      out = out.replace('\n\n', '\n')
+
     return out
 
 
