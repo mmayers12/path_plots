@@ -1,6 +1,5 @@
 import networkx as nx
 from itertools import chain
-from collections import Counter
 import matplotlib.pyplot as plt
 import path_plots.plotter as pt
 
@@ -74,8 +73,7 @@ def plot_path(path):
     xscale=10 + ((len(edges) - 2) * 2)
 
     source_id = path['links'][0]['source']
-    visit_count = Counter([l['source'] for l in path['links']]+[l['target'] for l in path['links']])
-    target_ids = [k for k, v in visit_count.items() if v == 1 and k != source_id]
+    target_ids = list(set([l['target'] for l in path['links']]) - set([l['source'] for l in path['links']]))
 
     pred_map = {(l['source'], l['target']): pt.prep_node_labels(l['key'], 15) for l in path['links']}
 
