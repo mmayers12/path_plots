@@ -16,6 +16,7 @@ node_color_map = {'Protein': '#e71761',
                  'CellularComponent': '#8c88d7',
                  'BiologicalProcess': '#b75970',
                  'MolecularActivity': '#b75970',
+                 'MacromolecularComplex': '#e71761',
                  'OrganismTaxon': '#e9bf98',
                  'INVALID': '#2e21d0'}
 
