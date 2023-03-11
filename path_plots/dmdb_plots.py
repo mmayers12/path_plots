@@ -21,7 +21,7 @@ node_color_map = {'Protein': '#e71761',
                  'INVALID': '#2e21d0'}
 
 
-def plot_node_legend():
+def plot_node_legend(labels):
     """Plots the color legened for the different node types in DrugMechDB"""
 
     f = lambda m,c: plt.plot([],[],marker=m, color=c, ls="none")[0]
@@ -40,16 +40,15 @@ def plot_node_legend():
 
     handles = [f("s", c) for c in colors]
 
-    legend = plt.legend(handles, labels, loc=3, framealpha=1, frameon=False, fontsize='x-large')
-
-    for hndl in legend.legendHandles:
-        hndl._legmarker.set_markersize(12)
+    legend = plt.legend(handles, labels, loc=3, framealpha=1, frameon=True, fontsize='x-large', markerscale =4)
+ 
+    # for hndl in legend.legendHandles:
+    #     hndl._legmarker.set_markersize(12)
 
     fig.patch.set_visible(False)
     ax.axis('off')
     fig.canvas.draw()
-    bbox  = legend.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-    return fig
+    legend.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
 
 
 def plot_path(path):
